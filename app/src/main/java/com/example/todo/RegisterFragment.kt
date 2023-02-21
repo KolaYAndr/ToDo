@@ -3,29 +3,46 @@ package com.example.todo
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.fragment_login.loginEditText
-import kotlinx.android.synthetic.main.fragment_login.passwordEditText
-import kotlinx.android.synthetic.main.fragment_register.*
+import com.example.todo.databinding.FragmentRegisterBinding
 
 class RegisterFragment : Fragment(R.layout.fragment_register) {
+
+    private var _binding: FragmentRegisterBinding? = null
+    private val binding get() = _binding!!
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentRegisterBinding.inflate(inflater, container, false)
+        return binding.root
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        loginEditText.addTextChangedListener {
+        binding.loginEditText.addTextChangedListener {
             buttonTextWatcher
         }
 
-        passwordEditText.addTextChangedListener {
+        binding.passwordEditText.addTextChangedListener {
             buttonTextWatcher
         }
 
-        nameEditText.addTextChangedListener {
+        binding.nameEditText.addTextChangedListener {
             buttonTextWatcher
         }
 
-        registerButton.setOnClickListener { (activity as FragmentDelivery).receive(-1) }
+        binding.registerButton.setOnClickListener { (activity as FragmentDelivery).receive(-1) }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     private val buttonTextWatcher = object : TextWatcher {
@@ -40,8 +57,8 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
         override fun afterTextChanged(s: Editable?) {
-            registerButton.isEnabled =
-                passwordEditText.text.isNotBlank() && loginEditText.text.isNotBlank() && nameEditText.text.isNotBlank()
+            binding.registerButton.isEnabled =
+                binding.passwordEditText.text.isNotBlank() && binding.loginEditText.text.isNotBlank() && binding.nameEditText.text.isNotBlank()
         }
     }
 }

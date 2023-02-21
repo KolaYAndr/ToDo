@@ -7,8 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.todo.databinding.FragmentGreetingBinding
 
-class GreetingFragment : Fragment(R.layout.fragment_greeting) {
-
+class TasksFragment : Fragment(R.layout.fragment_tasks) {
 
     private var _binding: FragmentGreetingBinding? = null
     private val binding get() = _binding!!
@@ -24,19 +23,10 @@ class GreetingFragment : Fragment(R.layout.fragment_greeting) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-        binding.logInButton.setOnClickListener {
-            (activity as FragmentDelivery).receive(0)
-        }
-        binding.registerButton.setOnClickListener {
-            (activity as FragmentDelivery).receive(1)
-        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
 }
