@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.asLiveData
+import com.example.todo.database.MainDb
 import com.example.todo.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), FragmentDelivery {
     private val taskAdapter = TaskAdapter()
-    private var isLoggedIn = false
+    private lateinit var db: MainDb
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,12 +21,14 @@ class MainActivity : AppCompatActivity(), FragmentDelivery {
 
         supportActionBar?.hide()
 
-        if (!isLoggedIn) {
-            showFragment(GreetingFragment())
-        }
+        db = MainDb.getDb(this@MainActivity)
+
+        getTasksAndSet()
+
+        showFragment(GreetingFragment())
     }
 
-    private fun showFragment(fragment: Fragment){
+    private fun showFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.container, fragment)
             .commit()
@@ -34,7 +38,7 @@ class MainActivity : AppCompatActivity(), FragmentDelivery {
     override fun receive(marker: Int) {
         when (marker) {
             -1 -> {
-                isLoggedIn = true
+                getTasksAndSet()
                 showFragment(TasksFragment(taskAdapter))
             }
             0 -> showFragment(LoginFragment())
@@ -45,7 +49,14 @@ class MainActivity : AppCompatActivity(), FragmentDelivery {
     }
 
     override fun receiveTask(task: Task) {
-        taskAdapter.addTask(task)
+        Thread { db.getDAO().insertTask(task) }.start() //поменять через корутину
+        getTasksAndSet()
         showFragment(TasksFragment(taskAdapter))
+    }
+
+    private fun getTasksAndSet(){
+        db.getDAO().getAllTasks().asLiveData().observe(this) {
+            taskAdapter.setTasks(it)
+        }
     }
 }

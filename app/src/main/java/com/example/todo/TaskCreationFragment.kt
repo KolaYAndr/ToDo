@@ -25,7 +25,7 @@ class TaskCreationFragment : Fragment(R.layout.fragment_task_creation) {
 
         binding.saveButton.setOnClickListener {
             val taskText = binding.taskCreationText.text
-            val task = Task(taskText.toString())
+            val task = Task(null, taskText.toString())
             (activity as FragmentDelivery).receiveTask(task)
         }
 

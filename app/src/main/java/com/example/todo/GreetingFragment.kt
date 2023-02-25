@@ -8,8 +8,6 @@ import androidx.fragment.app.Fragment
 import com.example.todo.databinding.FragmentGreetingBinding
 
 class GreetingFragment : Fragment(R.layout.fragment_greeting) {
-
-
     private var _binding: FragmentGreetingBinding? = null
     private val binding get() = _binding!!
 
@@ -24,7 +22,6 @@ class GreetingFragment : Fragment(R.layout.fragment_greeting) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         binding.logInButton.setOnClickListener {
             (activity as FragmentDelivery).receive(0)

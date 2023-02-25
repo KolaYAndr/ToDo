@@ -1,3 +1,13 @@
 package com.example.todo
 
-data class Task(var taskText: String)
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "task")
+data class Task(
+    @PrimaryKey(autoGenerate = true)
+    val id: Int?,
+    @ColumnInfo
+    var taskText: String
+    )

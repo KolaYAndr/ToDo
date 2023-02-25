@@ -3,9 +3,8 @@
     <string name="welcome">Welcome!</string>
     <string name="login">Log in</string>
     <string name="register">Register</string>
-    <string name="input_login">Your login</string>
+    <string name="input_email">Your email</string>
     <string name="input_password">Your password</string>
-    <string name="createLogin">Create login</string>
     <string name="createPassword">Create password</string>
     <string name="username">What\'s your name?</string>
     <string name="planned">Planned</string>

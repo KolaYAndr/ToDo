@@ -43,7 +43,7 @@
         android:autofillHints="emailAddress"
         android:backgroundTint="@android:color/transparent"
         android:gravity="center"
-        android:hint="@string/createLogin"
+        android:hint="@string/input_email"
         android:inputType="textEmailAddress"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
