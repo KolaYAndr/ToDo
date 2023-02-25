@@ -19,14 +19,14 @@
 
     <EditText
         android:id="@+id/loginEditText"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="40dp"
         android:autofillHints="emailAddress"
         android:backgroundTint="@android:color/transparent"
         android:gravity="center"
-        android:hint="@string/inputLogin"
+        android:hint="@string/input_login"
         android:inputType="textEmailAddress"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,14 +36,14 @@
 
     <EditText
         android:id="@+id/passwordEditText"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="20dp"
         android:autofillHints="password"
         android:backgroundTint="@android:color/transparent"
         android:gravity="center"
-        android:hint="@string/inputPassword"
+        android:hint="@string/input_password"
         android:inputType="textPassword"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -53,7 +53,7 @@
 
     <Button
         android:id="@+id/loginButton"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginBottom="100dp"

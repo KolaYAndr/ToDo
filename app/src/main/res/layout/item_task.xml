@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="80dp"
-    android:background="@color/white"
+    android:background="@drawable/square_rounded_shape"
     android:padding="10dp"
     android:layout_margin="10dp">
 
@@ -25,7 +25,7 @@
         app:layout_constraintStart_toEndOf="@id/checkbox"
         app:layout_constraintTop_toTopOf="parent"
         android:paddingHorizontal="24dp"
-        android:gravity="center"
+        android:gravity="center_vertical"
         tools:text="@tools:sample/cities"
         android:textSize="20sp"/>
 

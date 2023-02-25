@@ -3,10 +3,14 @@
     <string name="welcome">Welcome!</string>
     <string name="login">Log in</string>
     <string name="register">Register</string>
-    <string name="inputLogin">Your login</string>
-    <string name="inputPassword">Your password</string>
+    <string name="input_login">Your login</string>
+    <string name="input_password">Your password</string>
     <string name="createLogin">Create login</string>
     <string name="createPassword">Create password</string>
     <string name="username">What\'s your name?</string>
     <string name="planned">Planned</string>
+    <string name="task_creation">Create Task</string>
+    <string name="word_task">Task</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
 </resources>
