@@ -4,6 +4,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.todo.database.Task
 
 class TaskAdapter : RecyclerView.Adapter<TaskAdapter.TaskHolder>() {
     private var tasks: List<Task> = emptyList()

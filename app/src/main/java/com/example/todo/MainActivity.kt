@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.asLiveData
 import com.example.todo.database.MainDb
+import com.example.todo.database.Task
 import com.example.todo.databinding.ActivityMainBinding
+import com.example.todo.fragments.*
 
 class MainActivity : AppCompatActivity(), FragmentDelivery {
     private val taskAdapter = TaskAdapter()

@@ -1,4 +1,4 @@
-package com.example.todo
+package com.example.todo.fragments
 
 import android.os.Bundle
 import android.text.Editable
@@ -8,11 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
-import com.example.todo.databinding.FragmentRegisterBinding
+import com.example.todo.FragmentDelivery
+import com.example.todo.R
+import com.example.todo.databinding.FragmentLoginBinding
 
-class RegisterFragment : Fragment(R.layout.fragment_register) {
+class LoginFragment : Fragment(R.layout.fragment_login) {
 
-    private var _binding: FragmentRegisterBinding? = null
+
+    private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -20,9 +23,10 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentRegisterBinding.inflate(inflater, container, false)
+        _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.loginEditText.addTextChangedListener {
@@ -33,11 +37,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
             buttonTextWatcher
         }
 
-        binding.nameEditText.addTextChangedListener {
-            buttonTextWatcher
-        }
-
-        binding.registerButton.setOnClickListener { (activity as FragmentDelivery).receive(-1) }
+        binding.loginButton.setOnClickListener { (activity as FragmentDelivery).receive(-1) }
     }
 
     override fun onDestroyView() {
@@ -57,8 +57,8 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
         override fun afterTextChanged(s: Editable?) {
-            binding.registerButton.isEnabled =
-                binding.passwordEditText.text.isNotBlank() && binding.loginEditText.text.isNotBlank() && binding.nameEditText.text.isNotBlank()
+            binding.loginButton.isEnabled =
+                binding.passwordEditText.text.isNotEmpty() && binding.loginEditText.text.isNotEmpty()
         }
     }
 }
