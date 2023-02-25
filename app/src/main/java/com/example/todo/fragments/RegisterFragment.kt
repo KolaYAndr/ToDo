@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
-import com.example.todo.FragmentDelivery
+import com.example.todo.connectivity.ReceiveMarker
 import com.example.todo.R
 import com.example.todo.databinding.FragmentRegisterBinding
 
@@ -39,7 +39,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
             buttonTextWatcher
         }
 
-        binding.registerButton.setOnClickListener { (activity as FragmentDelivery).receive(-1) }
+        binding.registerButton.setOnClickListener { (activity as ReceiveMarker).receive(-1) }
     }
 
     override fun onDestroyView() {

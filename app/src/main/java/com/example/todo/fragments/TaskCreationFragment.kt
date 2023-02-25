@@ -5,8 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.todo.FragmentDelivery
+import com.example.todo.connectivity.ReceiveMarker
 import com.example.todo.R
+import com.example.todo.connectivity.ReceiveTask
 import com.example.todo.database.Task
 import com.example.todo.databinding.FragmentTaskCreationBinding
 
@@ -29,11 +30,11 @@ class TaskCreationFragment : Fragment(R.layout.fragment_task_creation) {
         binding.saveButton.setOnClickListener {
             val taskText = binding.taskCreationText.text
             val task = Task(null, taskText.toString())
-            (activity as FragmentDelivery).receiveTask(task)
+            (activity as ReceiveTask).receiveTask(task)
         }
 
         binding.cancelButton.setOnClickListener {
-            (activity as FragmentDelivery).receive(-1)
+            (activity as ReceiveMarker).receive(-1)
         }
     }
 

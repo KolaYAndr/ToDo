@@ -5,12 +5,14 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.asLiveData
+import com.example.todo.connectivity.ReceiveMarker
+import com.example.todo.connectivity.ReceiveTask
 import com.example.todo.database.MainDb
 import com.example.todo.database.Task
 import com.example.todo.databinding.ActivityMainBinding
 import com.example.todo.fragments.*
 
-class MainActivity : AppCompatActivity(), FragmentDelivery {
+class MainActivity : AppCompatActivity(), ReceiveMarker, ReceiveTask {
     private val taskAdapter = TaskAdapter()
     private lateinit var db: MainDb
     private lateinit var binding: ActivityMainBinding
@@ -25,8 +27,6 @@ class MainActivity : AppCompatActivity(), FragmentDelivery {
 
         db = MainDb.getDb(this@MainActivity)
 
-        getTasksAndSet()
-
         showFragment(GreetingFragment())
     }
 
@@ -39,10 +39,7 @@ class MainActivity : AppCompatActivity(), FragmentDelivery {
 
     override fun receive(marker: Int) {
         when (marker) {
-            -1 -> {
-                getTasksAndSet()
-                showFragment(TasksFragment(taskAdapter))
-            }
+            -1 -> showTasksFragment()
             0 -> showFragment(LoginFragment())
             1 -> showFragment(RegisterFragment())
             2 -> showFragment(TaskCreationFragment())
@@ -50,10 +47,14 @@ class MainActivity : AppCompatActivity(), FragmentDelivery {
         }
     }
 
-    override fun receiveTask(task: Task) {
-        Thread { db.getDAO().insertTask(task) }.start() //поменять через корутину
+    private fun showTasksFragment() {
         getTasksAndSet()
         showFragment(TasksFragment(taskAdapter))
+    }
+
+    override fun receiveTask(task: Task) {
+        Thread { db.getDAO().insertTask(task) }.start() //поменять через корутину
+        showTasksFragment()
     }
 
     private fun getTasksAndSet(){

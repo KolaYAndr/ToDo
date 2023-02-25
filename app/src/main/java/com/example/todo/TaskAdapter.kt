@@ -11,6 +11,7 @@ class TaskAdapter : RecyclerView.Adapter<TaskAdapter.TaskHolder>() {
 
     fun setTasks(tasks: List<Task>){
         this.tasks = tasks
+        notifyItemRangeInserted(0, tasks.size)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskHolder {
