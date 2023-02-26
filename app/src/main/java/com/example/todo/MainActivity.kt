@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity(), ReceiveMarker, ReceiveTask {
         supportActionBar?.hide()
 
         db = MainDb.getDb(this@MainActivity)
+        getTasksAndSet()
 
         showFragment(GreetingFragment())
     }
@@ -39,7 +40,7 @@ class MainActivity : AppCompatActivity(), ReceiveMarker, ReceiveTask {
 
     override fun receive(marker: Int) {
         when (marker) {
-            -1 -> showTasksFragment()
+            -1 -> showFragment(TasksFragment(taskAdapter))
             0 -> showFragment(LoginFragment())
             1 -> showFragment(RegisterFragment())
             2 -> showFragment(TaskCreationFragment())
@@ -47,14 +48,10 @@ class MainActivity : AppCompatActivity(), ReceiveMarker, ReceiveTask {
         }
     }
 
-    private fun showTasksFragment() {
-        getTasksAndSet()
-        showFragment(TasksFragment(taskAdapter))
-    }
-
     override fun receiveTask(task: Task) {
         Thread { db.getDAO().insertTask(task) }.start() //поменять через корутину
-        showTasksFragment()
+        taskAdapter.addTask(task)
+        showFragment(TasksFragment(taskAdapter))
     }
 
     private fun getTasksAndSet(){
